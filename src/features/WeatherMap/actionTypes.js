@@ -1,0 +1,5 @@
+export const ADD_CITY   = '@@ADD_CITY'
+export const DEL_CITY   = '@@DEL_CITY'
+export const PENDING    = '/PENDING'
+export const SUCCESS    = '/SUCCESS'
+export const FAILURE    = '/FAILURE'
