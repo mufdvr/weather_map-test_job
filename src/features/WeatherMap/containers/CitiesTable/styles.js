@@ -5,7 +5,8 @@ export default theme => ({
     overflowX: 'auto',
   },
   table: {
-    minWidth: 700,
+    minWidth: 768,
+    maxWidth: 1024
   },
   row: {
     '&:nth-of-type(odd)': {

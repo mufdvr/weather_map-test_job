@@ -1,6 +1,11 @@
 export default {
   root: {
-    maxWidth: '1024px',
-    margin: '50px auto'
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  paper: {
+    margin: 'auto'
   }
 }

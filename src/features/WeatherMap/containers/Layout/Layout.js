@@ -17,10 +17,12 @@ class Layout extends Component {
   render = () => {
     const { classes } = this.props
     return (
-      <Paper className={classes.root}>
-        <AddCity />
-        <CitiesTable />
-      </Paper>
+      <div className={classes.root}>
+        <Paper className={classes.paper}>
+          <AddCity />
+          <CitiesTable />
+        </Paper>
+      </div>
     )
   }
 }
