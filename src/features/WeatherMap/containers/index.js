@@ -1,5 +1,5 @@
 import AddCity from './AddCity'
 import CitiesTable from './CitiesTable'
-import Layout from './Layout'
+import WeatherMapRoot from './WeatherMapRoot'
 
-export { AddCity, CitiesTable, Layout }
+export { AddCity, CitiesTable, WeatherMapRoot }

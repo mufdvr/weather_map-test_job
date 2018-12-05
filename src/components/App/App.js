@@ -5,10 +5,14 @@ import { Provider } from 'react-redux'
 import store from 'store'
 import { WeatherMap } from 'features'
 
-const App = () =>
-  <Provider store={store}>
-    <WeatherMap.containers.Layout />
-  </Provider>
+const App = () => {
+  const { WeatherMapRoot } = WeatherMap.containers
+  return (
+    <Provider store={store}>
+      <WeatherMapRoot />
+    </Provider>
+  )
+}
 
 
 export default App

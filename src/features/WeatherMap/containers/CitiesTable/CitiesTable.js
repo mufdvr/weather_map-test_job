@@ -33,7 +33,7 @@ const CitiesTable = ({ cities, classes, deleteCity, sortByCity }) =>
             </CustomTableCell>
             <CustomTableCell numeric>{city.main.temp}</CustomTableCell>
             <CustomTableCell numeric>{city.main.pressure}</CustomTableCell>
-            <CustomTableCell>
+            <CustomTableCell numeric>
               <IconButton className={classes.button} onClick={() => deleteCity(index)} aria-label="Delete">
                 <DeleteIcon />
               </IconButton>
