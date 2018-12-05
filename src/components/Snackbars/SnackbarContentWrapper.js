@@ -46,7 +46,7 @@ const variantIcon = {
   info: InfoIcon,
 }
 
-function SnackbarContentWrapper({ classes, className, messages, onClose, variant }) {
+function SnackbarContentWrapper({ classes, className, message, onClose, variant }) {
   const Icon = variantIcon[variant]
   return (
     <SnackbarContent
@@ -56,7 +56,7 @@ function SnackbarContentWrapper({ classes, className, messages, onClose, variant
         <span id="client-snackbar" className={classes.message}>
           <Icon className={classNames(classes.icon, classes.iconVariant)} />
           <div>
-            {messages ? messages.map((msg, index) => <p key={index}>{msg}</p>) : null}
+            {message}
           </div>
         </span>
       }
@@ -78,7 +78,7 @@ function SnackbarContentWrapper({ classes, className, messages, onClose, variant
 SnackbarContentWrapper.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  messages: PropTypes.array,
+  message: PropTypes.string,
   onClose: PropTypes.func,
   variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
 };

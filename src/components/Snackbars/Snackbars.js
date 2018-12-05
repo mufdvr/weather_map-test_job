@@ -22,7 +22,7 @@ class Snackbars extends React.Component {
 
   render = () => {
     const { open } = this.state
-    const { variant, messages, autoHideDuration } = this.props
+    const { variant, message, autoHideDuration } = this.props
     return (
       <Snackbar
         anchorOrigin={{
@@ -36,7 +36,7 @@ class Snackbars extends React.Component {
         <SnackbarContentWrapper
           onClose={this.handleClose}
           variant={variant}
-          messages={messages}
+          message={message}
         />
       </Snackbar>
     )
@@ -45,20 +45,20 @@ class Snackbars extends React.Component {
 
 const portal = document.getElementById('portal')
 
-Snackbars.error = function(messages, autoHideDuration) {
-  ReactDOM.render(<Snackbars key={Math.random()} messages={messages} autoHideDuration={autoHideDuration} variant="error" />, portal)
+Snackbars.error = function(message, autoHideDuration) {
+  ReactDOM.render(<Snackbars key={Math.random()} message={message} autoHideDuration={autoHideDuration} variant="error" />, portal)
 }
 
-Snackbars.success = function(messages, autoHideDuration) {
-  ReactDOM.render(<Snackbars key={Math.random()} messages={messages} autoHideDuration={autoHideDuration} variant="success" />, portal)
+Snackbars.success = function(message, autoHideDuration) {
+  ReactDOM.render(<Snackbars key={Math.random()} message={message} autoHideDuration={autoHideDuration} variant="success" />, portal)
 }
 
-Snackbars.warning = function(messages, autoHideDuration) {
-  ReactDOM.render(<Snackbars key={Math.random()} messages={messages} autoHideDuration={autoHideDuration} variant="warning" />, portal)
+Snackbars.warning = function(message, autoHideDuration) {
+  ReactDOM.render(<Snackbars key={Math.random()} message={message} autoHideDuration={autoHideDuration} variant="warning" />, portal)
 }
 
-Snackbars.info = function(messages, autoHideDuration) {
-  ReactDOM.render(<Snackbars key={Math.random()} messages={messages} autoHideDuration={autoHideDuration} variant="info" />, portal)
+Snackbars.info = function(message, autoHideDuration) {
+  ReactDOM.render(<Snackbars key={Math.random()} message={message} autoHideDuration={autoHideDuration} variant="info" />, portal)
 }
 
 Snackbars.close = function() {
@@ -67,7 +67,7 @@ Snackbars.close = function() {
 
 Snackbars.propTypes = {
   variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']),
-  messages: PropTypes.array,
+  message: PropTypes.string,
   autoHideDuration: PropTypes.number
 }
 

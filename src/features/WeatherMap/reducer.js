@@ -4,7 +4,7 @@ const initialState = {
   fetching: false,
   payload: [],
   error: {},
-  nameSortOrder: 1
+  nameOrderBy: 1
 }
 
 export default (state = initialState, action) => {
@@ -39,14 +39,14 @@ export default (state = initialState, action) => {
       }
     }
     case types.SORT_BY_CITY: {
-      const { nameSortOrder } = state
+      const { nameOrderBy } = state
       return {
         ...state,
         error: {},
-        nameSortOrder: nameSortOrder * -1,
+        nameOrderBy: nameOrderBy * -1,
         payload: [...state.payload.sort((a, b) => {
-          if (a.name < b.name) return nameSortOrder * -1
-          if (a.name > b.name) return nameSortOrder
+          if (a.name < b.name) return nameOrderBy * -1
+          if (a.name > b.name) return nameOrderBy
           return 0
         })]
       }

@@ -1,6 +1,6 @@
 export default {
   root: {
     maxWidth: '1024px',
-    margin: 'auto'
+    margin: '50px auto'
   }
 }

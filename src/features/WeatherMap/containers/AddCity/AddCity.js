@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { withStyles } from '@material-ui/core/styles'
 
+import { Snackbars } from 'components'
 import * as actions from '../../actions'
 import styles from './styles'
 
@@ -18,13 +19,23 @@ class AddCity extends Component {
     [name]: event.target.value
   })
 
+  handleClick = () => {
+    const { cities, addCity } = this.props
+    const city = this.state.city.toLowerCase()
+    if (cities.find(item => item.name.toLowerCase() === city)) {
+      Snackbars.error('City already added')
+    } else {
+      addCity(city)
+    }
+  }
+
   componentWillReceiveProps = nextProps => {
-    const { fetching, error } = nextProps
-    !error.message && !fetching && this.setState({ city: '' })
+    const { fetching, error: { message } } = nextProps
+    !message && !fetching && this.setState({ city: '' })
   }
 
   render = () => {
-    const { classes, addCity, fetching } = this.props
+    const { classes, fetching } = this.props
     const { city } = this.state
     return (
       <div className={classes.root}>
@@ -36,7 +47,7 @@ class AddCity extends Component {
           margin="normal"
           variant="outlined"
         />
-        <Button variant="contained" className={classes.button} onClick={() => addCity(city)}>
+        <Button variant="contained" className={classes.button} onClick={this.handleClick}>
           Add
           { fetching && <CircularProgress size={24} className={classes.buttonProgress} /> }
         </Button>
@@ -46,8 +57,12 @@ class AddCity extends Component {
 }
 
 const mapStateToProps = state => {
-  const { fetching, error } = state.weatherMap
-  return { fetching, error }
+  const { fetching, error, payload } = state.weatherMap
+  return { 
+    fetching, 
+    error,
+    cities: payload 
+  }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({

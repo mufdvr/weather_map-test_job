@@ -10,8 +10,8 @@ import styles from './styles'
 class Layout extends Component {
 
   componentWillReceiveProps = nextProps => {
-    const { feching, error } = nextProps
-    if (!feching && error.message) Snackbars.error([error.message])
+    const { feching, error: { message } } = nextProps
+    if (!feching && message) Snackbars.error(message)
   }
 
   render = () => {
