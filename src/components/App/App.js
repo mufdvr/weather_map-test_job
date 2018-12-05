@@ -7,7 +7,7 @@ import { WeatherMap } from 'features'
 
 const App = () =>
   <Provider store={store}>
-    { WeatherMap.components.Layout() }
+    <WeatherMap.containers.Layout />
   </Provider>
 
 

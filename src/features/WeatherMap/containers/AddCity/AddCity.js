@@ -3,19 +3,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import { withStyles } from '@material-ui/core/styles'
 
 import * as actions from '../../actions'
-
-const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
-  button: {
-    margin: theme.spacing.unit,
-  }
-})
+import styles from './styles'
 
 class AddCity extends Component {
   state = {
@@ -26,11 +18,16 @@ class AddCity extends Component {
     [name]: event.target.value
   })
 
+  componentWillReceiveProps = nextProps => {
+    const { fetching, error } = nextProps
+    !error.message && !fetching && this.setState({ city: '' })
+  }
+
   render = () => {
-    const { classes, addCity } = this.props
+    const { classes, addCity, fetching } = this.props
     const { city } = this.state
     return (
-      <div>
+      <div className={classes.root}>
         <TextField
           label="City"
           className={classes.textField}
@@ -41,17 +38,23 @@ class AddCity extends Component {
         />
         <Button variant="contained" className={classes.button} onClick={() => addCity(city)}>
           Add
+          { fetching && <CircularProgress size={24} className={classes.buttonProgress} /> }
         </Button>
       </div>
     )
   }
 }
 
+const mapStateToProps = state => {
+  const { fetching, error } = state.weatherMap
+  return { fetching, error }
+}
+
 const mapDispatchToProps = dispatch => bindActionCreators({
   ...actions
 }, dispatch)
 
-const ReduxWrapper = connect(null, mapDispatchToProps)
+const ReduxWrapper = connect(mapStateToProps, mapDispatchToProps)
 const StylesWrapper = withStyles(styles)
 const WrappedComponent = ReduxWrapper(StylesWrapper(AddCity))
 export default WrappedComponent

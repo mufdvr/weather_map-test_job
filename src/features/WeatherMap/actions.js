@@ -1,22 +1,10 @@
-import * as api from './api'
-import * as types from './actionTypes'
 import fetch from 'isomorphic-fetch'
 
-const DEFAULT_ERROR_MSG = ['Что то пошло не так...']
+import * as api from './api'
+import * as types from './actionTypes'
+import { checkResponse } from 'utils'
 
-const checkResponse = response =>
-  new Promise((resolve, reject) => {
-    switch (response.status) {
-      case 200:
-        response.json().then(json => resolve(json))
-        break
-      default:
-        reject({
-          msg: DEFAULT_ERROR_MSG
-        })
-    }
-  })
-
+const DEFAULT_ERROR_MSG = 'Unknown error'
 
 export const addCity = city => dispatch => {
 
@@ -35,15 +23,22 @@ export const addCity = city => dispatch => {
         payload
       }))
     )
-    .catch(errors => {
-      if (!errors.msg) errors = {
-        msg: DEFAULT_ERROR_MSG
+    .catch(error => {
+      if (!error.message) error = {
+        message: DEFAULT_ERROR_MSG
       }
       dispatch({
         type: types.ADD_CITY + types.FAILURE,
-        errors
+        error
       })
     })
-
-
 }
+
+export const deleteCity = index => ({
+  type: types.DELETE_CITY,
+  index
+})
+
+export const sortByCity = () => ({
+  type: types.SORT_BY_CITY
+})
